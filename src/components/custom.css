@@ -1,0 +1,41 @@
+/* .hero__image {
+    @apply relative xl:w-full w-[90%] xl:h-full h-[590px] z-0;
+  }
+  
+  .hero__image-overlay {
+    @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
+  } */
+
+
+
+.hero__image-overlay{
+    /* Absolute positioning */
+    position: absolute;
+    top: -15%; /* 24px in Tailwind for xl screens */
+    /* right: -50%; 1/2 in Tailwind for xl screens */
+    right: -52%; /* 1/4 in Tailwind for xl screens */
+    
+    /* Background image */
+    background-image: url('/hero-bg.png');
+    background-repeat: round; /* bg-repeat-round in Tailwind */
+    
+    /* Z-index */
+    z-index: -10; /* -z-10 in Tailwind */
+    
+    /* Size */
+    width: 100%; /* w-full in Tailwind */
+    height: 700px; /* h-[590px] in Tailwind */
+    
+    /* Overflow */
+    overflow: hidden; /* overflow-hidden in Tailwind */
+}
+
+@media (max-width:500px)  { 
+    .hero__image-overlay{
+        /* border: 2px solid red; */
+        top: 100%;
+        width: 80%;
+        right: -10%;
+        height: 550px;
+    }
+}

@@ -1,7 +1,13 @@
+import { Hero } from "@/components";
 
 export default function Home() {
   return (
-    <div>home page</div>
+    <div>
+      
+      <Hero/>
+
+    </div>
+
 
   );
 }
