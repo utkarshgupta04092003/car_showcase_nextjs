@@ -2,7 +2,8 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Modal from '@/components/Modal';
-export default function CarCard({data, index, onClick}) {
+import { CarCardProps } from '../../types';
+export default function CarCard({data, index, onClick}: CarCardProps) {
 
 
   return (

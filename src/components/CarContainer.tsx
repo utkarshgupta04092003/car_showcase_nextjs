@@ -4,11 +4,15 @@ import axios from 'axios';
 import CarCard from './CarCard';
 import Modal from './Modal';
 
-export default function CarContainer() {
-    const [data, setData] = useState();
-    const [modalData, setModalData] = useState();
-    useEffect(() => {
+interface CarData {
+    // Define properties of your car data here
+}
 
+export default function CarContainer() {
+    const [data, setData] = useState<CarData[] | null>(null);
+    const [modalData, setModalData] = useState<CarData | null>(null);
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 if (!localStorage.getItem('cars')) {
@@ -18,9 +22,9 @@ export default function CarContainer() {
                         localStorage.setItem('cars', JSON.stringify(data.data))
                         console.log('api called');
                     }
-                }
-                else {
-                    const data = JSON.parse(localStorage.getItem('cars'));
+                } else {
+                    const dataString = localStorage.getItem('cars');
+                    const data = dataString ? JSON.parse(dataString) : null;
                     console.log('local storage called')
                     setData(data);
                 }
@@ -29,27 +33,22 @@ export default function CarContainer() {
             }
         }
         fetchData();
-
     }, []);
-    const handleModal = (index) => {
+
+    const handleModal = (index: number) => {
         console.log('clicked', index);
-        if (index == -1)
-            setModalData('');
+        if (index === -1)
+            setModalData(null);
         else
-            setModalData(data[index]);
+            setModalData(data ? data[index] : null);
     }
+
     return (
         <div className='w-[90%] mx-auto flex justify-center md:justify-between flex-wrap my-16'>
-
-            {
-                data?.map((d, index) => (
-                    <CarCard data={d} index={index} onClick={handleModal} />
-                ))
-            }
-
-            {(modalData) && <Modal data={modalData} onClick={handleModal}/>}
-
-
+            {data?.map((d, index) => (
+                <CarCard key={index} data={d} index={index} onClick={handleModal} />
+            ))}
+            {modalData && <Modal data={modalData} onClick={handleModal} />}
         </div>
     )
 }
