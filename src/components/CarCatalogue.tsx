@@ -3,10 +3,13 @@ import SearchBar from '@/components/SearchBar';
 import Filters from '@/components/Filters';
 
 export default function CarCatalogue() {
+
+    
+
     const carOptions = ["Fuel", "Gas", "Electricity"];
     const yearOptions = ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'];
     return (
-        <div className='w-[90%] mx-auto'>
+        <div className='w-[90%] mx-auto' id='carcatalogue'>
             <div>
                 <h1 className='text-5xl font-bold '>Car Catalogue</h1>
                 <p className='text-lg my-3'>Explore out cars you might like</p>

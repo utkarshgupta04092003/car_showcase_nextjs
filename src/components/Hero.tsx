@@ -7,7 +7,13 @@ import './custom.css'
 export default function Hero() {
 
     const handleButton = () => {
-        console.log('button clicked');
+        const scrollToContact = () => {
+            const contactSection = document.getElementById('carcatalogue');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        scrollToContact();
     }
 
 
