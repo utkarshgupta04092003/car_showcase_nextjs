@@ -12,6 +12,7 @@ export default function Main() {
     const [data, setData] = useState<Data[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -59,6 +60,26 @@ export default function Main() {
             setIsLoading(false);
         }
     }
+    const fetchDataByModel = async (make: string|undefined, model: string|undefined) =>{
+        try {
+            setIsLoading(true);
+            const {data} = await axios.post('/api/filterbymodel', {make, model});
+            console.log('filtered data', data);
+            if(data.status){
+                setData(data.data);
+            }
+            else{
+                alert('something went wrong');
+            }
+
+
+        } catch (error) {
+            console.log(error);
+        }
+        finally{
+            setIsLoading(false);
+        }
+    }
 
 
     const handleSetFuel = async (value: string) =>{
@@ -71,10 +92,14 @@ export default function Main() {
         setYear(value);
         fetchFilteredData(fuel, value);
     }
+    const handleModel = (make: string, model: string) =>{
+        console.log(make, model);
+        fetchDataByModel(make, model);
+    }
 
   return (
     <div>
-        <CarCatalogue handleSetFuel={handleSetFuel} handleSetYear={handleSetYear}  year={year} fuel={fuel}/>
+        <CarCatalogue handleSetFuel={handleSetFuel} handleSetYear={handleSetYear}  year={year} fuel={fuel}  handleModel={handleModel}/>
         {
             isLoading ? <p className='text-2xl font-semibold text-center my-32'>Loading...</p> : 
             <CarContainer data={data}/>

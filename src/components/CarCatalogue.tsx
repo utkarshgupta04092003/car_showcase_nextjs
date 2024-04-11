@@ -2,7 +2,7 @@ import React from 'react'
 import SearchBar from '@/components/SearchBar';
 import Filters from '@/components/Filters';
 
-export default function CarCatalogue({handleSetFuel, handleSetYear, fuel , year}:any) {
+export default function CarCatalogue({handleSetFuel, handleSetYear, fuel , year, handleModel}:any) {
 
     
 
@@ -25,7 +25,7 @@ export default function CarCatalogue({handleSetFuel, handleSetYear, fuel , year}
             </div>
 
             <div className='flex justify-between items-center'>
-                <SearchBar />
+                <SearchBar  handleModel={handleModel}/>
                 <div className='flex items-center'>
                     <Filters filterType={fuel} options={carOptions} setFilter={setFilter} key={0}/>
                     <Filters filterType={year} options={yearOptions} setFilter={setFilter} key={1}/>
