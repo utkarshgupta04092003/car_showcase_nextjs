@@ -31,6 +31,7 @@ export interface ModalProps{
 export interface FiltersProps {
     filterType: string;
     options: String[]; // or specific type for options array
+    setFilter:any;
 }
 
 export interface CarCardProps{
@@ -38,4 +39,8 @@ export interface CarCardProps{
     index: number, 
     onClick: any
 
+}
+
+export interface CarContainerProps{
+    data: Data[] | null
 }

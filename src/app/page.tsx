@@ -1,12 +1,11 @@
-import { CarCatalogue, CarContainer, Footer, Header, Hero } from "@/components";
+import { CarCatalogue, CarContainer, Footer, Header, Hero, Main } from "@/components";
 
 export default function Home() {
   return (
     <div>
       <Header/>
       <Hero/>
-      <CarCatalogue/>
-      <CarContainer/>
+      <Main/>
       <Footer/>
 
     </div>

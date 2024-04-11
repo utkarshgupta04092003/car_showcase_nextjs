@@ -2,12 +2,21 @@ import React from 'react'
 import SearchBar from '@/components/SearchBar';
 import Filters from '@/components/Filters';
 
-export default function CarCatalogue() {
+export default function CarCatalogue({handleSetFuel, handleSetYear}:any) {
 
     
 
-    const carOptions = ["Fuel", "Gas", "Electricity"];
+    const carOptions = ['gas', 'diesel', 'electricity'];
     const yearOptions = ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'];
+    const setFilter = (value:string)=>{
+        console.log('filter vlaue', value);
+        if(yearOptions.includes(value)){
+            handleSetYear(value);
+        }
+        else{
+            handleSetFuel(value);
+        }
+    }
     return (
         <div className='w-[90%] mx-auto' id='carcatalogue'>
             <div>
@@ -18,8 +27,8 @@ export default function CarCatalogue() {
             <div className='flex justify-between items-center'>
                 <SearchBar />
                 <div className='flex items-center'>
-                    <Filters filterType="Fuel" options={carOptions}/>
-                    <Filters filterType="Year" options={yearOptions}/>
+                    <Filters filterType="Fuel" options={carOptions} setFilter={setFilter} key={0}/>
+                    <Filters filterType="Year" options={yearOptions} setFilter={setFilter} key={1}/>
                 </div>
             </div>
         </div>

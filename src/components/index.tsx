@@ -8,6 +8,7 @@ import Filters from './Filters';
 import CarContainer from './CarContainer';
 import CarCard from './CarCard';
 import Modal from './Modal';
+import Main from './Main';
 export {
-    Hero, CustomButton, Header, Footer, CarCatalogue, SearchBar, Filters, CarContainer, CarCard, Modal
+    Hero, CustomButton, Header, Footer, CarCatalogue, SearchBar, Filters, CarContainer, CarCard, Modal, Main
 }
