@@ -74,7 +74,7 @@ export default function Main() {
 
   return (
     <div>
-        <CarCatalogue handleSetFuel={handleSetFuel} handleSetYear={handleSetYear}/>
+        <CarCatalogue handleSetFuel={handleSetFuel} handleSetYear={handleSetYear}  year={year} fuel={fuel}/>
         {
             isLoading ? <p className='text-2xl font-semibold text-center my-32'>Loading...</p> : 
             <CarContainer data={data}/>
