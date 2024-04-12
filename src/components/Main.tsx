@@ -11,8 +11,8 @@ export default function Main() {
     const [year, setYear] = useState<string>();
     const [data, setData] = useState<Data[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    
-    
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -33,22 +33,22 @@ export default function Main() {
             } catch (error) {
                 alert('Something went wrong');
             }
-            finally{
+            finally {
                 setIsLoading(false);
             }
         }
         fetchData();
     }, []);
 
-    const fetchFilteredData = async (fuel: string|undefined, year: string|undefined) =>{
+    const fetchFilteredData = async (fuel: string | undefined, year: string | undefined) => {
         try {
             setIsLoading(true);
-            const {data} = await axios.post('/api/getfilterdata', {fuel, year});
+            const { data } = await axios.post('/api/getfilterdata', { fuel, year });
             console.log('filtered data', data);
-            if(data.status){
+            if (data.status) {
                 setData(data.data);
             }
-            else{
+            else {
                 alert('something went wrong');
             }
 
@@ -56,19 +56,19 @@ export default function Main() {
         } catch (error) {
             console.log(error);
         }
-        finally{
+        finally {
             setIsLoading(false);
         }
     }
-    const fetchDataByModel = async (make: string|undefined, model: string|undefined) =>{
+    const fetchDataByModel = async (make: string | undefined, model: string | undefined) => {
         try {
             setIsLoading(true);
-            const {data} = await axios.post('/api/filterbymodel', {make, model});
+            const { data } = await axios.post('/api/filterbymodel', { make, model });
             console.log('filtered data', data);
-            if(data.status){
+            if (data.status) {
                 setData(data.data);
             }
-            else{
+            else {
                 alert('something went wrong');
             }
 
@@ -76,35 +76,49 @@ export default function Main() {
         } catch (error) {
             console.log(error);
         }
-        finally{
+        finally {
             setIsLoading(false);
         }
     }
 
+    const handleLoadMore = async () =>{
+        console.log('clicked handle load more');
+        try {
+            const {data:resdata} = await axios.get('/api/loadmore');
+            console.log('fetched data', data);
+            if(resdata.status){
+                setData(data?.concat(resdata.data) || null);
+            }
+            
+        } catch (error) {
+            alert("Something went wrong");
+        }
+    }
 
-    const handleSetFuel = async (value: string) =>{
+
+    const handleSetFuel = async (value: string) => {
         console.log('set fuel', value)
         setFuel(value);
         fetchFilteredData(value, year);
     }
-    const handleSetYear = async (value:string) =>{
+    const handleSetYear = async (value: string) => {
         console.log('set year', value);
         setYear(value);
         fetchFilteredData(fuel, value);
     }
-    const handleModel = (make: string, model: string) =>{
+    const handleModel = (make: string, model: string) => {
         console.log(make, model);
         fetchDataByModel(make, model);
     }
 
-  return (
-    <div>
-        <CarCatalogue handleSetFuel={handleSetFuel} handleSetYear={handleSetYear}  year={year} fuel={fuel}  handleModel={handleModel}/>
-        {
-            isLoading ? <p className='text-2xl font-semibold text-center my-32'>Loading...</p> : 
-            <CarContainer data={data}/>
-        }
-      
-    </div>
-  )
+    return (
+        <div>
+            <CarCatalogue handleSetFuel={handleSetFuel} handleSetYear={handleSetYear} year={year} fuel={fuel} handleModel={handleModel} />
+            {
+                isLoading ? <p className='text-2xl font-semibold text-center my-32'>Loading...</p> :
+                    <CarContainer data={data} handleLoadMore={handleLoadMore} />
+            }
+
+        </div>
+    )
 }

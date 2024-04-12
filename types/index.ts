@@ -42,5 +42,6 @@ export interface CarCardProps{
 }
 
 export interface CarContainerProps{
-    data: Data[] | null
+    data: Data[] | null;
+    handleLoadMore: ()=>void
 }
