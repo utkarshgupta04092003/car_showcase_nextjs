@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 export async function POST(request: NextRequest) {
-    const API_KEY = process.env.API_KEY;
-    const API_Host = process.env.API_Host;
+    const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+    const API_Host = process.env.NEXT_PUBLIC_API_Host;
 
    
 

@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 const axios = require('axios');
 export async function GET(request: NextRequest) {
 
-  const API_KEY = process.env.API_KEY;
-  const API_Host = process.env.API_Host;
+  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+  const API_Host = process.env.NEXT_PUBLIC_API_Host;
 
   const options = {
     method: 'GET',
