@@ -1,17 +1,13 @@
 'use client';
-import React, { useEffect, useState } from 'react'
-import CarCard from './CarCard';
-import Modal from './Modal';
+import { useEffect, useState } from 'react';
 import { CarContainerProps, Data } from '../../types';
+import CarCard from './CarCard';
 import CustomButton from './CustomButton';
-
-
+import Modal from './Modal';
 export default function CarContainer({ data, handleLoadMore }: CarContainerProps) {
     const [modalData, setModalData] = useState<Data | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-
     const handleModal = (index: number) => {
-        console.log('clicked', index);
         if (index === -1)
             setModalData(null);
         else
@@ -23,7 +19,6 @@ export default function CarContainer({ data, handleLoadMore }: CarContainerProps
     useEffect(() => {
         setIsLoading(false);
     }, [data])
-
     return (
         <>
             <div className='w-[90%] mx-auto flex justify-center md:justify-between flex-wrap my-16'>
@@ -31,16 +26,12 @@ export default function CarContainer({ data, handleLoadMore }: CarContainerProps
                     <CarCard key={index} data={d} index={index} onClick={handleModal} />
                 ))}
                 {modalData && <Modal data={modalData} onClick={handleModal} />}
-
             </div>
             <div className='w-full flex justify-center'>
-
                 {
                     isLoading ?
                         <CustomButton title="Loading..." buttonStyle={`p-2 px-5 rounded-full bg-blue-600 text-white`} /> :
-
                         <div onClick={handleLoading}>
-
                             <CustomButton title="Load More" buttonStyle={`p-2 px-5 rounded-full bg-blue-600 text-white`} handleClick={handleLoadMore} />
                         </div>
                 }

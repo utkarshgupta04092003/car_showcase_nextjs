@@ -1,12 +1,9 @@
 import Image from 'next/image'
-import React from 'react'
 import { ModalProps } from '../../types'
-
 export default function Modal({ data, onClick }: ModalProps) {
     return (
         <div className=' fixed top-0 left-0 w-full h-screen bg-gray-50 '>
             <div className='fixed top-10 left-[30%] opacity-1 text-black'>
-
                 <div  className="relative p-4 w-full max-w-xl max-h-full min-w-[400px]  ">
                     <div  className="relative bg-white rounded-lg shadow ">
                         <div  className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
@@ -23,27 +20,21 @@ export default function Modal({ data, onClick }: ModalProps) {
                         <div  className="p-4 md:p-5 space-y-4 relative flex justify-center">
                             <Image src={'/pattern.png'} width={1000} height={1500} className='w-[90%] h-[150px] absolute' alt='pattern'/>
                             <div className='flex justify-center '>
-
                                 <Image src={'/democar.webp'} width={1000} height={1500} className='w-[200px] h-[120px] 
                             relative' alt='democar'/>
                             </div>
                         </div>
                         <div className='flex justify-around mt-5'>
-
                             <div className='w-1/4 flex justify-center  '>
                                 <Image src={'/carfront.webp'} width={500} height={500} alt='front'/>
                             </div>
-
                             <div className='w-1/4 flex justify-center  '>
                                 <Image src={'/cartop.webp'} width={500} height={500} alt='top'/>
                             </div>
-
                             <div className='w-1/4 flex justify-center  '>
                                 <Image src={'/carback.webp'} width={500} height={500} alt='back'/>
                             </div>
-
                         </div>
-
                         <div className="details  ">
                             <table className='table-auto   mx-auto w-[90%]'>
                                 <tbody>

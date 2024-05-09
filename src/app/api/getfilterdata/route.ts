@@ -3,9 +3,6 @@ import axios from "axios";
 export async function POST(request: NextRequest) {
     const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
     const API_Host = process.env.NEXT_PUBLIC_API_Host;
-
-   
-
     try {
         const {fuel, year} = await request.json();
         const options = {
@@ -21,12 +18,8 @@ export async function POST(request: NextRequest) {
                 'X-RapidAPI-Host': API_Host,
             }
         };
-
         const response = await axios.request(options);
-        // console.log(response.data);
         return NextResponse.json({status: true, fuel, year, data: response.data});
-
-
     } catch (error) {
         return NextResponse.json({ status: false, error, msg: "Internal Server Error" });
     }
